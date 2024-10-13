@@ -27,17 +27,18 @@ async function getAllCharacter() {
 
 <template>
   <div class="container">
-    <ModalWrapper id="exampleModal">
-      <CharacterModal />
-    </ModalWrapper>
 
     <div class="row d-flex justify-content-center align-items-center">
       <div v-for="character in characters" :key="character.id" class="col-md-3 col-12">
         <CharacterCard :characterProp="character" class="btn btn-primary" data-bs-toggle="modal"
-          data-bs-target="#exampleModal" />
+          data-bs-target="#char-modal" />
       </div>
     </div>
   </div>
+
+  <ModalWrapper id="char-modal">
+    <CharacterModal />
+  </ModalWrapper>
 
 
 </template>
