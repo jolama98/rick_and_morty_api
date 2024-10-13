@@ -1,37 +1,45 @@
 <script setup>
+import { computed, onMounted } from 'vue';
+import Pop from '../utils/Pop.js';
+import { characterService } from '@/services/CharacterService.js'
+import { AppState } from '@/AppState.js';
+import CharacterCard from '@/components/CharacterCard.vue';
+import ModalWrapper from '@/components/ModalWrapper.vue';
+import CharacterModal from '@/components/CharacterModal.vue';
 
+
+const characters = computed(() => AppState.character)
+
+onMounted(() => {
+  getAllCharacter()
+})
+
+async function getAllCharacter() {
+
+  try {
+    await characterService.getAllCharacter()
+  }
+  catch (error) {
+    Pop.error(error);
+  }
+}
 </script>
 
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="home-card p-5 card align-items-center shadow rounded elevation-3">
-      <img src="@/assets/img/cw-circle-logo.png" alt="CodeWorks Logo"
-        class="rounded-circle">
-      <h1 class="my-5 bg-dark text-white p-3 rounded text-center">
-        Vue 3 Starter
-      </h1>
+  <div class="container">
+    <ModalWrapper id="exampleModal">
+      <CharacterModal />
+    </ModalWrapper>
+
+    <div class="row d-flex justify-content-center align-items-center">
+      <div v-for="character in characters" :key="character.id" class="col-md-3 col-12">
+        <CharacterCard :characterProp="character" class="btn btn-primary" data-bs-toggle="modal"
+          data-bs-target="#exampleModal" />
+      </div>
     </div>
   </div>
+
+
 </template>
 
-<style scoped lang="scss">
-.home {
-  display: grid;
-  height: 80vh;
-  place-content: center;
-  text-align: center;
-  user-select: none;
-
-  .home-card {
-    width: clamp(500px, 50vw, 100%);
-
-    >img {
-      height: 200px;
-      max-width: 200px;
-      width: 100%;
-      object-fit: contain;
-      object-position: center;
-    }
-  }
-}
-</style>
+<style scoped lang="scss"></style>
