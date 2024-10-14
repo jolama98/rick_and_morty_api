@@ -14,6 +14,9 @@ export class Character {
     this.url = data.url;
     this.created = data.created;
   }
+  get backgroundImage() {
+    return `url(${this.image})`
+  }
 }
 const c = [
   {

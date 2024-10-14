@@ -1,11 +1,12 @@
 <script setup>
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, onUnmounted } from 'vue';
 import Pop from '../utils/Pop.js';
 import { characterService } from '@/services/CharacterService.js'
 import { AppState } from '@/AppState.js';
 import CharacterCard from '@/components/CharacterCard.vue';
 import ModalWrapper from '@/components/ModalWrapper.vue';
 import CharacterModal from '@/components/CharacterModal.vue';
+import PageNavigation from '@/components/PageNavigation.vue';
 
 
 const characters = computed(() => AppState.character)
@@ -13,6 +14,19 @@ const characters = computed(() => AppState.character)
 onMounted(() => {
   getAllCharacter()
 })
+onUnmounted(()=>{
+  discoverCharacters()
+
+})
+
+async function discoverCharacters(){
+  try {
+    await characterService.discoverCharacters()
+  }
+  catch (error){
+    Pop.error(error);
+  }
+}
 
 async function getAllCharacter() {
 
@@ -28,6 +42,7 @@ async function getAllCharacter() {
 <template>
   <div class="container">
 
+    <PageNavigation />
     <div class="row d-flex justify-content-center align-items-center">
       <div v-for="character in characters" :key="character.id" class="col-md-3 col-12">
         <CharacterCard :characterProp="character" class="btn btn-primary" data-bs-toggle="modal"
