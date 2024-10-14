@@ -5,17 +5,15 @@ import { Character } from "@/models/Character.js";
 import { logger } from "@/utils/Logger.js"
 
 class CharacterService {
+  clearCharacter() {
+    AppState.characterQuery = ''
+  }
   changeSearchPage(pageNumber, characterQuery) {
     throw new Error('Method not implemented.');
   }
-  async discoverCharacters() {
-    const response = await rickAndMortyApi.get('api/character')
-    this.handleResponseData(response.data)
-
-  }
 
 
-  async changeDiscoverPage(pageNumber) {
+  async changePage(pageNumber) {
 
     const response = await rickAndMortyApi.get(`api/character/?page=${pageNumber}`)
     console.log('CHANGED PAGE 🧍', response.data);
@@ -29,6 +27,7 @@ class CharacterService {
 
     AppState.character = response.data.results
     logger.log("ALL CHARACTER'S", response.data.results)
+    AppState.totalPages = response.data.info.pages
   }
 
   async getCharacterById(characterId) {
@@ -40,11 +39,10 @@ class CharacterService {
   }
 
   handleResponseData(responseData) {
-    const newCharacters = responseData.results.map(characterPOJO => new Character(characterPOJO))
+    const newCharacters = responseData.results.map(characterPOJO => new Character(characterPOJO));
 
-    AppState.character = newCharacters
-    AppState.currentPage = responseData.page
-    AppState.totalPages = responseData.total_pages
+    AppState.character = newCharacters;
+    AppState.totalPages = responseData.info.pages;
   }
 }
 

@@ -13,7 +13,8 @@ export const AppState = reactive({
   setActiveCharacter: null,
   /** @type {Character} */
   characterById: null,
-  currentPage: 0,
+
+  currentPage: 1,
   totalPages: 0,
   characterQuery: ''
 })
