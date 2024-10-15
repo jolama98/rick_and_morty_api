@@ -11,9 +11,16 @@ const totalPages = computed(() => AppState.totalPages)
 
 async function changePage(pageNumber) {
   try {
-    await characterService.changePage(pageNumber)
-    logger.log('Page navigation', pageNumber)
-    AppState.currentPage = pageNumber
+    if (AppState.characterQuery == '') {
+      await characterService.changePage(pageNumber)
+      logger.log('Page navigation', pageNumber)
+      AppState.currentPage = pageNumber
+    }
+
+    else {
+      await characterService.changeSearchPage(pageNumber, AppState.characterQuery)
+      AppState.currentPage = pageNumber
+    }
 
   }
   catch (error) {

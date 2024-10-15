@@ -15,9 +15,10 @@ onMounted(() => {
   getAllCharacter()
 })
 
-// onUnmounted(() => {
-//   characterService.clearCharacter()
-// })
+onUnmounted(() => {
+  characterService.clearCharacter()
+})
+
 
 
 async function getAllCharacter() {
@@ -35,6 +36,8 @@ async function getAllCharacter() {
   <div class="container">
 
     <PageNavigation />
+
+
 
     <div class="row d-flex justify-content-center align-items-center">
       <div v-for="character in characters" :key="character.id" class="col-md-3 col-12">

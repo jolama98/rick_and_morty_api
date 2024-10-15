@@ -5,17 +5,24 @@ import { Character } from "@/models/Character.js";
 import { logger } from "@/utils/Logger.js"
 
 class CharacterService {
+  async changeSearchPage(pageNumber, characterQuery) {
+    const response = await rickAndMortyApi.get(`api/character/?page=${pageNumber}&name=${characterQuery}`)
+    AppState.characterQuery = characterQuery
+    this.handleResponseData(response.data)
+  }
+
   async searchCharacter(characterQuery) {
     const response = await rickAndMortyApi.get(`api/character/?name=${characterQuery}`)
     console.log('SEACRHED character 🔍', response.data.results);
     AppState.characterQuery = characterQuery
     this.handleResponseData(response.data)
   }
-  // async changeSearchPage(pageNumber, movieQuery) {
-  //   const response = await movieAPI.get(`search/movie?page=${pageNumber}&query=${movieQuery}`)
-  //   console.log('CHANGED SEARCH PAGE', response.data);
-  //   this.handleResponseData(response.data)
-  // }
+
+  clearCharacter() {
+    AppState.character = []
+    AppState.currentPage = 0
+    AppState.totalPages = 0
+  }
 
   clearSearchQuery() {
     AppState.characterQuery = ''

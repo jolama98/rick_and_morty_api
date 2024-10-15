@@ -1,6 +1,8 @@
 <script setup>
 import { AppState } from '@/AppState.js';
 import CharacterCard from '@/components/CharacterCard.vue';
+import CharacterModal from '@/components/CharacterModal.vue';
+import ModalWrapper from '@/components/ModalWrapper.vue';
 import PageNavigation from '@/components/PageNavigation.vue';
 import { characterService } from '@/services/CharacterService.js';
 import Pop from '@/utils/Pop.js';
@@ -44,17 +46,27 @@ function searchCharacter() {
           </div>
         </form>
       </div>
-      <div class="col-12">
-        <PageNavigation />
-      </div>
     </section>
-    <section class="row">
+  </div>
+
+
+
+  <div class="container">
+
+    <PageNavigation />
+
+    <div class="row d-flex justify-content-center align-items-center">
       <div v-for="character in characters" :key="character.id" class="col-md-3 col-12">
         <CharacterCard :characterProp="character" class="btn btn-primary" data-bs-toggle="modal"
           data-bs-target="#char-modal" />
       </div>
-    </section>
+    </div>
   </div>
+
+  <ModalWrapper id="char-modal">
+    <CharacterModal />
+  </ModalWrapper>
+
 </template>
 
 
