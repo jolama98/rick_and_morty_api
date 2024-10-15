@@ -5,13 +5,21 @@ import { Character } from "@/models/Character.js";
 import { logger } from "@/utils/Logger.js"
 
 class CharacterService {
-  clearCharacter() {
+  async searchCharacter(characterQuery) {
+    const response = await rickAndMortyApi.get(`api/character/?name=${characterQuery}`)
+    console.log('SEACRHED character 🔍', response.data.results);
+    AppState.characterQuery = characterQuery
+    this.handleResponseData(response.data)
+  }
+  // async changeSearchPage(pageNumber, movieQuery) {
+  //   const response = await movieAPI.get(`search/movie?page=${pageNumber}&query=${movieQuery}`)
+  //   console.log('CHANGED SEARCH PAGE', response.data);
+  //   this.handleResponseData(response.data)
+  // }
+
+  clearSearchQuery() {
     AppState.characterQuery = ''
   }
-  changeSearchPage(pageNumber, characterQuery) {
-    throw new Error('Method not implemented.');
-  }
-
 
   async changePage(pageNumber) {
 
