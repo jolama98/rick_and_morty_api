@@ -5,7 +5,7 @@ defineProps({
   characterProp: { type: Character, require: true }
 })
 
-function setActiveCharacter(characterId){
+function setActiveCharacter(characterId) {
   characterService.getCharacterById(characterId)
 }
 </script>
@@ -15,7 +15,7 @@ function setActiveCharacter(characterId){
   <div v-if="characterProp" class="card mb-3">
     <img @click="setActiveCharacter(characterProp.id)" :src="characterProp.image" :alt="characterProp.image">
     <div class="d-flex justify-content-center">
-      <h3>{{ characterProp.name }}</h3>
+      <p class=" fw-semibold fs-5">{{ characterProp.name }}</p>
     </div>
   </div>
 </template>

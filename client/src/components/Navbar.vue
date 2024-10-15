@@ -21,7 +21,9 @@ function toggleTheme() {
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="/img/cw-logo.png" height="45" />
+        <img alt="logo"
+          src="https://thumbs.dreamstime.com/b/portal-space-to-other-universes-portal-space-to-other-universes-isolated-black-background-vector-252551834.jpg"
+          height="45" />
       </div>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -30,15 +32,15 @@ function toggleTheme() {
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
-        <li>
+        <!-- <li>
           <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
             About
           </router-link>
-        </li>
+        </li> -->
         <li>
-        <router-link :to="{ name: 'Search' }" class="btn text-success lighten-30 selectable text-uppercase">
-          Search <i class="mdi mdi-magnify"></i>
-        </router-link>
+          <router-link :to="{ name: 'Search' }" class="btn text-success lighten-30 selectable text-uppercase">
+            Search <i class="mdi mdi-magnify"></i>
+          </router-link>
         </li>
       </ul>
       <!-- LOGIN COMPONENT HERE -->
@@ -48,7 +50,7 @@ function toggleTheme() {
           <Icon :name="theme == 'light' ? 'weather-sunny' : 'weather-night'" />
         </button>
       </div>
-      <Login />
+      <!-- <Login /> -->
     </div>
   </nav>
 </template>
