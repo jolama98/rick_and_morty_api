@@ -43,4 +43,8 @@ async function changePage(pageNumber) {
 </template>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+button {
+  background-color: #f0e14a;
+}
+</style>

@@ -10,16 +10,14 @@ function setActiveCharacter(characterId) {
 }
 </script>
 
-
 <template>
-  <div v-if="characterProp" class="card mb-3">
+  <div v-if="characterProp" class="card bg-primary">
     <img @click="setActiveCharacter(characterProp.id)" :src="characterProp.image" :alt="characterProp.image">
     <div class="d-flex justify-content-center">
       <p class=" fw-semibold fs-5">{{ characterProp.name }}</p>
     </div>
   </div>
 </template>
-
 
 <style lang="scss" scoped>
 img {
