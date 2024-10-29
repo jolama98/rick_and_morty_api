@@ -32,19 +32,24 @@ function searchCharacter() {
   <div class="container">
     <section class="row">
       <div class="col-12">
-        <h1>Search Characters</h1>
+        <div class="d-flex justify-content-center">
+          <h1>Search Characters</h1>
+        </div>
       </div>
       <div class="col-12 my-3">
-        <form @submit.prevent="searchCharacter()">
-          <div>
-            <label for="" class="form-control-label">Character Name</label>
-            <div class="d-flex">
-              <input v-model="editableQuery" type="text" class="form-control flex-grow-1 gap-1" name="query" id="query"
+        <div class="d-flex justify-content-center">
+
+          <form @submit.prevent="searchCharacter()">
+            <div>
+              <label for="" class="form-control-label">Character Name</label>
+              <div class="d-flex">
+                <input v-model="editableQuery" type="text" class="form-control flex-grow-1 gap-1" name="query" id="query"
                 placeholder="Character Name..." required>
-              <button class="btn btn-outline-dark" type="submit">Search</button>
+                <button class="btn btn-warning" type="submit">Search</button>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </section>
   </div>

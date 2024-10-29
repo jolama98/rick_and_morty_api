@@ -10,7 +10,6 @@ const character = computed(() => AppState.characterById)
   <div class="row">
     <div class="col-7">
       <div class="card">
-
         <img class="img-fluid" :src="character?.image" :alt="character?.name">
         <h2 class=" card-img-overlay text-light d-flex justify-content-start align-items-end p-3 shadow-sm ">{{
           character?.name }}

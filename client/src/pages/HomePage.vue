@@ -33,16 +33,18 @@ async function getAllCharacter() {
 </script>
 
 <template>
-  <div class="container">
-
+  <div class="container-fluid  mt-3">
     <PageNavigation />
 
+    <div class="row">
+      <div class="col-12">
+        <div class="masonry-layout">
 
-
-    <div class="row d-flex justify-content-center align-items-center">
-      <div v-for="character in characters" :key="character.id" class="col-md-3 col-12">
-        <CharacterCard :characterProp="character" class="btn btn-primary" data-bs-toggle="modal"
-          data-bs-target="#char-modal" />
+          <div v-for="character in characters" :key="character.id" class="masonry-item">
+            <CharacterCard :characterProp="character"  data-bs-toggle="modal"
+              data-bs-target="#char-modal" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -54,4 +56,27 @@ async function getAllCharacter() {
 
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.masonry-layout {
+  column-count: 4;
+  column-gap: 1rem;
+  width: 100%;
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .masonry-layout {
+    column-count: 3;
+  }
+}
+
+@media (max-width: 480px) {
+  .masonry-layout {
+    column-count: 2;
+  }
+}
+</style>

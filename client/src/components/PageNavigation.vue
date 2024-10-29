@@ -31,7 +31,7 @@ async function changePage(pageNumber) {
 
 
 <template>
-  <div class="d-flex gap-3 align-items-center my-3">
+  <div class="d-flex gap-3 align-items-center my-3 justify-content-center">
     <button @click="changePage(currentPage - 1)" class="btn btn-outline-dark">
       Previous
     </button>
